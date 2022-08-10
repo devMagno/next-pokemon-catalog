@@ -1,0 +1,145 @@
+.main {
+  display: flex;
+  align-items: center;
+  flex-direction: column;
+  justify-content: center;
+
+  padding: 16px;
+  min-height: 100vh;
+
+  h1 {
+    font-weight: 800;
+
+    display: flex;
+    align-items: center;
+    margin-bottom: 0;
+
+    svg {
+      margin-left: 8px;
+    }
+  }
+
+  p {
+    margin-bottom: 16px;
+  }
+
+  .typesContainer {
+    margin: -5px;
+    max-width: 400px;
+
+    display: flex;
+    flex-wrap: wrap;
+    align-items: center;
+    justify-content: center;
+
+    .typeButton {
+      color: $white;
+      background-color: $fontColor;
+
+      margin: 5px;
+
+      &:hover {
+        border-color: $fontColor;
+      }
+    }
+
+    :global .colorless {
+      background-color: $normal;
+
+      &:hover {
+        border-color: $normal;
+        box-shadow: 0 0 0 3px rgba($normal, 0.3);
+      }
+    }
+
+    :global .darkness {
+      background-color: $dark;
+
+      &:hover {
+        border-color: $dark;
+        box-shadow: 0 0 0 3px rgba($dark, 0.3);
+      }
+    }
+
+    :global .dragon {
+      background-color: $dragon;
+
+      &:hover {
+        border-color: $dragon;
+        box-shadow: 0 0 0 3px rgba($dragon, 0.3);
+      }
+    }
+
+    :global .fairy {
+      background-color: $fairy;
+
+      &:hover {
+        border-color: $fairy;
+        box-shadow: 0 0 0 3px rgba($fairy, 0.3);
+      }
+    }
+
+    :global .fighting {
+      background-color: $fighting;
+
+      &:hover {
+        border-color: $fighting;
+        box-shadow: 0 0 0 3px rgba($fighting, 0.3);
+      }
+    }
+
+    :global .fire {
+      background-color: $fire;
+
+      &:hover {
+        border-color: $fire;
+        box-shadow: 0 0 0 3px rgba($fire, 0.3);
+      }
+    }
+
+    :global .grass {
+      background-color: $grass;
+
+      &:hover {
+        border-color: $grass;
+        box-shadow: 0 0 0 3px rgba($grass, 0.3);
+      }
+    }
+
+    :global .lightning {
+      background-color: $electric;
+
+      &:hover {
+        border-color: $electric;
+        box-shadow: 0 0 0 3px rgba($electric, 0.3);
+      }
+    }
+
+    :global .metal {
+      background-color: $steel;
+
+      &:hover {
+        border-color: $steel;
+        box-shadow: 0 0 0 3px rgba($steel, 0.3);
+      }
+    }
+
+    :global .psychic {
+      background-color: $psychic;
+
+      &:hover {
+        border-color: $psychic;
+        box-shadow: 0 0 0 3px rgba($psychic, 0.3);
+      }
+    }
+
+    :global .water {
+      background-color: $water;
+
+      &:hover {
+        border-color: $water;
+        box-shadow: 0 0 0 3px rgba($water, 0.3);
+      }
+    }
+  }
+}

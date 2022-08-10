@@ -23,6 +23,22 @@
   "rules": {
     "react/jsx-filename-extension": [1, { "extensions": [".tsx", ".jsx"] }],
     "react/jsx-props-no-spreading": "off",
-    "arrow-body-style": "off"
+    "arrow-body-style": "off",
+    "import/extensions": "off",
+    "jsx-a11y/anchor-is-valid": [
+      "error",
+      {
+        "components": ["Link"],
+        "specialLink": ["hrefLeft", "hrefRight"],
+        "aspects": ["invalidHref", "preferButton"]
+      }
+    ]
+  },
+  "settings": {
+    "import/resolver": {
+      "node": {
+        "extensions": [".js", ".jsx", ".ts", ".tsx"]
+      }
+    }
   }
 }
