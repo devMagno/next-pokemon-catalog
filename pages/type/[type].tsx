@@ -1,6 +1,5 @@
 import { Button, Col, Row } from 'antd'
 import { GetStaticPaths, GetStaticProps } from 'next'
-import Head from 'next/head'
 import Link from 'next/link'
 import { LoadingOutlined } from '@ant-design/icons'
 import { useRouter } from 'next/router'
@@ -12,6 +11,7 @@ import api from '../../services/api'
 import { CardData } from '../../types/card'
 
 import styles from './type.module.scss'
+import SEO from '../../components/seo'
 
 interface IParams extends ParsedUrlQuery {
   type: string
@@ -37,9 +37,11 @@ export default function Type({ type, data, count }: TypeProps) {
 
   return (
     <main className="main">
-      <Head>
-        <title>Pokémon TCG - {typeDisplay} type</title>
-      </Head>
+      <SEO
+        title={`Pokémon TCG - ${typeDisplay} type`}
+        ogImage="og.png"
+        description={`The Pokémon Trading Card Game abbreviated as PTCG or Pokémon TCG, is a collectible card game based on the Pokémon franchise. Check all the collectible cards of the ${typeDisplay} type!`}
+      />
 
       <Title
         type={type}

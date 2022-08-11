@@ -14,7 +14,8 @@
 
       margin: 5px;
 
-      &:hover {
+      &:hover,
+      &:focus {
         border-color: $fontColor;
       }
     }
@@ -22,7 +23,8 @@
     :global .colorless {
       background-color: $normal;
 
-      &:hover {
+      &:hover,
+      &:focus {
         border-color: $normal;
         box-shadow: 0 0 0 3px rgba($normal, 0.3);
       }
@@ -31,7 +33,8 @@
     :global .darkness {
       background-color: $dark;
 
-      &:hover {
+      &:hover,
+      &:focus {
         border-color: $dark;
         box-shadow: 0 0 0 3px rgba($dark, 0.3);
       }
@@ -40,7 +43,8 @@
     :global .dragon {
       background-color: $dragon;
 
-      &:hover {
+      &:hover,
+      &:focus {
         border-color: $dragon;
         box-shadow: 0 0 0 3px rgba($dragon, 0.3);
       }
@@ -49,7 +53,8 @@
     :global .fairy {
       background-color: $fairy;
 
-      &:hover {
+      &:hover,
+      &:focus {
         border-color: $fairy;
         box-shadow: 0 0 0 3px rgba($fairy, 0.3);
       }
@@ -58,7 +63,8 @@
     :global .fighting {
       background-color: $fighting;
 
-      &:hover {
+      &:hover,
+      &:focus {
         border-color: $fighting;
         box-shadow: 0 0 0 3px rgba($fighting, 0.3);
       }
@@ -67,7 +73,8 @@
     :global .fire {
       background-color: $fire;
 
-      &:hover {
+      &:hover,
+      &:focus {
         border-color: $fire;
         box-shadow: 0 0 0 3px rgba($fire, 0.3);
       }
@@ -76,7 +83,8 @@
     :global .grass {
       background-color: $grass;
 
-      &:hover {
+      &:hover,
+      &:focus {
         border-color: $grass;
         box-shadow: 0 0 0 3px rgba($grass, 0.3);
       }
@@ -85,7 +93,8 @@
     :global .lightning {
       background-color: $electric;
 
-      &:hover {
+      &:hover,
+      &:focus {
         border-color: $electric;
         box-shadow: 0 0 0 3px rgba($electric, 0.3);
       }
@@ -94,7 +103,8 @@
     :global .metal {
       background-color: $steel;
 
-      &:hover {
+      &:hover,
+      &:focus {
         border-color: $steel;
         box-shadow: 0 0 0 3px rgba($steel, 0.3);
       }
@@ -103,7 +113,8 @@
     :global .psychic {
       background-color: $psychic;
 
-      &:hover {
+      &:hover,
+      &:focus {
         border-color: $psychic;
         box-shadow: 0 0 0 3px rgba($psychic, 0.3);
       }
@@ -112,7 +123,8 @@
     :global .water {
       background-color: $water;
 
-      &:hover {
+      &:hover,
+      &:focus {
         border-color: $water;
         box-shadow: 0 0 0 3px rgba($water, 0.3);
       }

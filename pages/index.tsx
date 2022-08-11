@@ -1,9 +1,9 @@
 import { Button } from 'antd'
 import { GetStaticProps } from 'next'
-import Head from 'next/head'
 import Link from 'next/link'
 
 import { TbPokeball } from 'react-icons/tb/'
+import SEO from '../components/seo'
 import Title from '../components/Title'
 
 import api from '../services/api'
@@ -17,9 +17,11 @@ interface HomeProps {
 export default function Home({ types }: HomeProps): JSX.Element {
   return (
     <main className={`main ${styles.home}`}>
-      <Head>
-        <title>Pokémon TCG - Home</title>
-      </Head>
+      <SEO
+        title="Pokémon TCG - Home"
+        ogImage="og.png"
+        description="The Pokémon Trading Card Game abbreviated as PTCG or Pokémon TCG, is a collectible card game based on the Pokémon franchise. Choose your type and see all the collectible cards!"
+      />
 
       <Title
         title="Pokémon TCG"
