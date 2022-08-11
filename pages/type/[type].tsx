@@ -21,12 +21,9 @@ interface TypeProps {
   count: number
 }
 
-export default function Type({
-  type,
-  data,
-  count,
-}: TypeProps) {
-  const typeDisplay = type[0].toUpperCase() + type.slice(1)
+export default function Type({ type, data, count }: TypeProps) {
+  // const typeDisplay = type[0].toUpperCase() + type.slice(1)
+  const typeDisplay = type
 
   return (
     <main className="main">
@@ -66,6 +63,8 @@ export const getStaticPaths: GetStaticPaths = async () => {
   const paths = response.data.data.map((type: string) => ({
     params: { type: type.toLowerCase() },
   }))
+
+  console.log(paths)
 
   return {
     paths,
