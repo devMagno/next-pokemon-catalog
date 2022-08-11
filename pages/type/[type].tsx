@@ -2,6 +2,8 @@ import { Button, Col, Row } from 'antd'
 import { GetStaticPaths, GetStaticProps } from 'next'
 import Head from 'next/head'
 import Link from 'next/link'
+import { LoadingOutlined } from '@ant-design/icons'
+import { useRouter } from 'next/router'
 import { ParsedUrlQuery } from 'querystring'
 import { TbArrowLeft } from 'react-icons/tb'
 import PokeCard from '../../components/PokeCard'
@@ -22,8 +24,16 @@ interface TypeProps {
 }
 
 export default function Type({ type, data, count }: TypeProps) {
-  // const typeDisplay = type[0].toUpperCase() + type.slice(1)
-  const typeDisplay = type
+  const { isFallback } = useRouter()
+
+  if (isFallback)
+    return (
+      <div className="main">
+        <LoadingOutlined style={{ fontSize: '32px' }} />
+      </div>
+    )
+
+  const typeDisplay = type[0].toUpperCase() + type.slice(1)
 
   return (
     <main className="main">
@@ -63,8 +73,6 @@ export const getStaticPaths: GetStaticPaths = async () => {
   const paths = response.data.data.map((type: string) => ({
     params: { type: type.toLowerCase() },
   }))
-
-  console.log(paths)
 
   return {
     paths,

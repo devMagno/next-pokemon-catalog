@@ -1,4 +1,6 @@
 import Card from 'antd/lib/card'
+import Image from 'next/image'
+
 import { CardData } from '../../types/card'
 
 import styles from './Card.module.scss'
@@ -14,9 +16,14 @@ export default function PokeCard({ data, type }: PokeCardProps) {
   return (
     <Card className={styles.cardWrapper}>
       <div className={`${styles.card} ${type}`}>
-        <figure className={styles.image}>
-          <img src={images.small} alt={name} title={name} />
-        </figure>
+        <Image
+          src={images.small}
+          alt={name}
+          title={name}
+          className={styles.image}
+          width={245}
+          height={342}
+        />
 
         <p className={styles.name}>{name}</p>
         {attacks && attacks.length && (
