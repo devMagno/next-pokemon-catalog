@@ -32,7 +32,8 @@
         "specialLink": ["hrefLeft", "hrefRight"],
         "aspects": ["invalidHref", "preferButton"]
       }
-    ]
+    ],
+    "react/require-default-props": "off"
   },
   "settings": {
     "import/resolver": {

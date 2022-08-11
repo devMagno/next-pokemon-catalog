@@ -4,8 +4,9 @@ import Head from 'next/head'
 import Link from 'next/link'
 
 import { TbPokeball } from 'react-icons/tb/'
+import Title from '../components/Title'
 
-import api from './services/api'
+import api from '../services/api'
 
 import styles from '../styles/Home.module.scss'
 
@@ -15,20 +16,20 @@ interface HomeProps {
 
 export default function Home({ types }: HomeProps): JSX.Element {
   return (
-    <main className={styles.main}>
+    <main className={`main ${styles.home}`}>
       <Head>
         <title>Pokémon TCG - Home</title>
       </Head>
 
-      <h1>
-        Pokémon TCG <TbPokeball size="32px" />
-      </h1>
-
-      <p>Choose your type!</p>
+      <Title
+        title="Pokémon TCG"
+        icon={<TbPokeball size="32px" />}
+        subtitle="Choose your type!"
+      />
 
       <nav className={styles.typesContainer}>
         {types.map((type) => (
-          <Link href="#temp" passHref>
+          <Link href={`/type/${type.toLowerCase()}`} passHref key={type}>
             <Button
               key={type}
               size="large"
