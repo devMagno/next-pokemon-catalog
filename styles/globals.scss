@@ -26,6 +26,11 @@ a {
   text-decoration: none;
 }
 
+ul,
+li {
+  list-style: none;
+}
+
 .main {
   display: flex;
   align-items: center;
@@ -78,4 +83,125 @@ a {
 
 .water {
   color: $water;
+}
+
+.typeButton {
+  color: $white;
+  background-color: $fontColor;
+
+  &:hover,
+  &:focus {
+    color: $white;
+    border-color: $fontColor;
+  }
+
+  &.colorless {
+    background-color: $normal;
+
+    &:hover,
+    &:focus {
+      border-color: $normal;
+      box-shadow: 0 0 0 3px rgba($normal, 0.3);
+    }
+  }
+
+  &.darkness {
+    background-color: $dark;
+
+    &:hover,
+    &:focus {
+      border-color: $dark;
+      box-shadow: 0 0 0 3px rgba($dark, 0.3);
+    }
+  }
+
+  &.dragon {
+    background-color: $dragon;
+
+    &:hover,
+    &:focus {
+      border-color: $dragon;
+      box-shadow: 0 0 0 3px rgba($dragon, 0.3);
+    }
+  }
+
+  &.fairy {
+    background-color: $fairy;
+
+    &:hover,
+    &:focus {
+      border-color: $fairy;
+      box-shadow: 0 0 0 3px rgba($fairy, 0.3);
+    }
+  }
+
+  &.fighting {
+    background-color: $fighting;
+
+    &:hover,
+    &:focus {
+      border-color: $fighting;
+      box-shadow: 0 0 0 3px rgba($fighting, 0.3);
+    }
+  }
+
+  &.fire {
+    background-color: $fire;
+
+    &:hover,
+    &:focus {
+      border-color: $fire;
+      box-shadow: 0 0 0 3px rgba($fire, 0.3);
+    }
+  }
+
+  &.grass {
+    background-color: $grass;
+
+    &:hover,
+    &:focus {
+      border-color: $grass;
+      box-shadow: 0 0 0 3px rgba($grass, 0.3);
+    }
+  }
+
+  &.lightning {
+    background-color: $electric;
+
+    &:hover,
+    &:focus {
+      border-color: $electric;
+      box-shadow: 0 0 0 3px rgba($electric, 0.3);
+    }
+  }
+
+  &.metal {
+    background-color: $steel;
+
+    &:hover,
+    &:focus {
+      border-color: $steel;
+      box-shadow: 0 0 0 3px rgba($steel, 0.3);
+    }
+  }
+
+  &.psychic {
+    background-color: $psychic;
+
+    &:hover,
+    &:focus {
+      border-color: $psychic;
+      box-shadow: 0 0 0 3px rgba($psychic, 0.3);
+    }
+  }
+
+  &.water {
+    background-color: $water;
+
+    &:hover,
+    &:focus {
+      border-color: $water;
+      box-shadow: 0 0 0 3px rgba($water, 0.3);
+    }
+  }
 }

@@ -11,7 +11,7 @@ import api from '../../services/api'
 import { CardData } from '../../types/card'
 
 import styles from './type.module.scss'
-import SEO from '../../components/seo'
+import SEO from '../../components/SEO'
 
 interface IParams extends ParsedUrlQuery {
   type: string
@@ -52,7 +52,7 @@ export default function Type({ type, data, count }: TypeProps) {
       {data.length ? (
         <Row className={styles.cards} gutter={[16, 16]}>
           {data.map((card) => (
-            <Col span={24} sm={{ span: 12 }} key={card.id}>
+            <Col span={24} key={card.id}>
               <PokeCard data={card} type={type} />
             </Col>
           ))}

@@ -1,0 +1,162 @@
+.cardWrapper {
+  border: 0;
+  border-radius: 8px;
+
+  > div {
+    padding: 0;
+  }
+
+  .card {
+    display: flex;
+    overflow: hidden;
+    border: 1px solid;
+    border-radius: 8px;
+
+    @media only screen and (max-width: 768px) {
+      padding-top: 16px;
+      flex-direction: column;
+    }
+
+    .image {
+      width: 245px !important;
+      height: 342px !important;
+      min-width: unset !important;
+    }
+
+    .content {
+      padding: 0 16px;
+
+      @media only screen and (max-width: 768px) {
+        padding-top: 8px;
+        padding-bottom: 24px;
+        flex-direction: column;
+      }
+    }
+
+    .name {
+      margin-top: 16px;
+
+      font-size: 24px;
+      font-weight: 700;
+      line-height: 28px;
+    }
+
+    .title {
+      font-size: 16px;
+      font-weight: 600;
+      color: $fontColor;
+      line-height: 16px;
+
+      display: block;
+      margin-bottom: 8px;
+    }
+
+    .attacks {
+      ul {
+        display: flex;
+        flex-direction: column;
+
+        li {
+          display: flex;
+          align-items: center;
+
+          color: $fontColor;
+
+          + li {
+            margin-top: 8px;
+          }
+
+          span {
+            + span {
+              margin-left: 4px !important;
+            }
+
+            &:last-child {
+              margin-right: 8px !important;
+            }
+          }
+        }
+      }
+    }
+
+    .weaknesses {
+      margin-top: 24px;
+
+      ul {
+        display: flex;
+        align-items: center;
+
+        li {
+          color: $fontColor;
+        }
+      }
+    }
+
+    .subtypes {
+      margin-top: 24px;
+
+      display: flex;
+      align-items: center;
+
+      .title {
+        margin: 0;
+      }
+
+      ul {
+        margin: 0 0 0 8px;
+
+        li {
+          color: $fontColor;
+        }
+      }
+    }
+
+    :global .typeButton {
+      margin-top: 24px;
+    }
+  }
+
+  :global .colorless {
+    border-color: $normal;
+  }
+
+  :global .darkness {
+    border-color: $dark;
+  }
+
+  :global .dragon {
+    border-color: $dragon;
+  }
+
+  :global .fairy {
+    border-color: $fairy;
+  }
+
+  :global .fighting {
+    border-color: $fighting;
+  }
+
+  :global .fire {
+    border-color: $fire;
+  }
+
+  :global .grass {
+    border-color: $grass;
+  }
+
+  :global .lightning {
+    border-color: $electric;
+  }
+
+  :global .metal {
+    border-color: $steel;
+  }
+
+  :global .psychic {
+    border-color: $psychic;
+  }
+
+  :global .water {
+    border-color: $water;
+  }
+}

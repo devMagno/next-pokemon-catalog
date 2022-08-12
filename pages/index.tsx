@@ -3,7 +3,7 @@ import { GetStaticProps } from 'next'
 import Link from 'next/link'
 
 import { TbPokeball } from 'react-icons/tb/'
-import SEO from '../components/seo'
+import SEO from '../components/SEO'
 import Title from '../components/Title'
 
 import api from '../services/api'
@@ -35,7 +35,7 @@ export default function Home({ types }: HomeProps): JSX.Element {
             <Button
               key={type}
               size="large"
-              className={`${styles.typeButton} ${type.toLowerCase()}`}
+              className={`typeButton ${type.toLowerCase()}`}
             >
               {type}
             </Button>
