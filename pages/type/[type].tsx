@@ -5,7 +5,10 @@ import { LoadingOutlined } from '@ant-design/icons'
 import { useRouter } from 'next/router'
 import { ParsedUrlQuery } from 'querystring'
 import { TbArrowLeft } from 'react-icons/tb'
+import { useEffect, useState } from 'react'
+import { AnimatePresence } from 'framer-motion'
 import PokeCard from '../../components/PokeCard'
+import PokeModal from '../../components/PokeModal'
 import Title from '../../components/Title'
 import api from '../../services/api'
 import { CardData } from '../../types/card'
@@ -35,6 +38,27 @@ export default function Type({ type, data, count }: TypeProps) {
 
   const typeDisplay = type[0].toUpperCase() + type.slice(1)
 
+  const [modalData, setModalData] = useState<CardData | null>(null)
+
+  const handleCloseModal = () => {
+    setModalData(null)
+  }
+
+  useEffect(() => {
+    const close = (e: KeyboardEvent) => {
+      if (e.code === 'Escape') setModalData(null)
+    }
+
+    if (modalData !== null) {
+      document.body.style.overflow = 'hidden'
+
+      window.addEventListener('keydown', close)
+    } else {
+      document.body.style.overflow = 'auto'
+      window.removeEventListener('keydown', close)
+    }
+  }, [modalData])
+
   return (
     <main className="main">
       <SEO
@@ -50,13 +74,32 @@ export default function Type({ type, data, count }: TypeProps) {
       />
 
       {data.length ? (
-        <Row className={styles.cards} gutter={[16, 16]}>
-          {data.map((card) => (
-            <Col span={24} key={card.id}>
-              <PokeCard data={card} type={type} />
-            </Col>
-          ))}
-        </Row>
+        <>
+          <Row className={styles.cards} gutter={[16, 16]}>
+            {data.map((card) => (
+              <Col span={24} key={card.id}>
+                <PokeCard
+                  data={card}
+                  type={type}
+                  handleOpenModal={() => setModalData(card)}
+                />
+              </Col>
+            ))}
+          </Row>
+
+          <AnimatePresence
+            initial={false}
+            exitBeforeEnter
+            onExitComplete={() => null}
+          >
+            {modalData && (
+              <PokeModal
+                data={modalData as CardData}
+                handleCloseModal={() => handleCloseModal()}
+              />
+            )}
+          </AnimatePresence>
+        </>
       ) : (
         <Link href="/" passHref>
           <Button type="link" className={styles.goBack}>

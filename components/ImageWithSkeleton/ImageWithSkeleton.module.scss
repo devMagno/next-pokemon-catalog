@@ -1,0 +1,39 @@
+.wrapper {
+  overflow: hidden;
+  position: relative;
+}
+
+.skeleton {
+  width: 100%;
+  height: 100%;
+  background-size: 200%;
+  background-color: $skeletonBackground;
+  background-image: linear-gradient(
+    90deg,
+    $skeletonBackground 0px,
+    $white 50%,
+    $skeletonBackground 100%
+  );
+  animation: skeleton 2s infinite linear;
+
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  position: absolute;
+}
+
+.img {
+  display: block;
+  max-width: 100%;
+  transition: 0.2s;
+}
+
+@keyframes skeleton {
+  from {
+    background-position: 0px;
+  }
+  to {
+    background-position: -200%;
+  }
+}

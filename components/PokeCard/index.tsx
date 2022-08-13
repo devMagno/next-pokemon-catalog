@@ -1,8 +1,8 @@
 import { Button } from 'antd'
 import Card from 'antd/lib/card'
-import Image from 'next/image'
 
 import { CardData } from '../../types/card'
+import ImageWithSkeleton from '../ImageWithSkeleton'
 import TypeIcon from '../TypeIcon'
 
 import styles from './PokeCard.module.scss'
@@ -10,15 +10,20 @@ import styles from './PokeCard.module.scss'
 interface PokeCardProps {
   data: CardData
   type: string
+  handleOpenModal: () => void
 }
 
-export default function PokeCard({ data, type }: PokeCardProps) {
+export default function PokeCard({
+  data,
+  type,
+  handleOpenModal,
+}: PokeCardProps) {
   const { name, attacks, subtypes, weaknesses, images } = data
 
   return (
     <Card className={styles.cardWrapper}>
       <div className={`${styles.card} ${type}`}>
-        <Image
+        <ImageWithSkeleton
           alt={name}
           title={name}
           width={245}
@@ -74,7 +79,14 @@ export default function PokeCard({ data, type }: PokeCardProps) {
             </div>
           )}
 
-          <Button className={`typeButton ${type}`}>See more</Button>
+          <Button
+            className={`typeButton ${type}`}
+            onClick={() => {
+              handleOpenModal()
+            }}
+          >
+            See more
+          </Button>
         </div>
       </div>
     </Card>
