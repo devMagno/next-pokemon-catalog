@@ -46,7 +46,11 @@ export default function PokeCard({
                         key={`${costType}-${index}`}
                       />
                     ))}
-                    {attack.name}
+                    <p>
+                      {attack.name}
+
+                      <span>{attack.damage}</span>
+                    </p>
                   </li>
                 ))}
               </ul>

@@ -17,13 +17,17 @@
       flex-direction: column;
     }
 
-    .image {
-      width: 245px !important;
-      min-width: unset !important;
+    > div:first-child {
+      align-items: center;
+
+      .image {
+        width: 245px !important;
+        min-width: unset !important;
+      }
     }
 
     .content {
-      padding: 0 16px;
+      padding: 0 16px 16px;
 
       @media only screen and (max-width: 768px) {
         padding-top: 8px;
@@ -65,13 +69,22 @@
             margin-top: 8px;
           }
 
-          span {
+          > span {
             + span {
               margin-left: 4px !important;
             }
 
-            &:last-child {
+            &:last-of-type {
               margin-right: 8px !important;
+            }
+          }
+
+          p {
+            margin: 0;
+
+            span {
+              font-weight: 600;
+              margin-left: 4px;
             }
           }
         }
@@ -124,6 +137,10 @@
 
     :global .typeButton {
       margin-top: 24px;
+
+      @media only screen and (max-width: 768px) {
+        width: 100%;
+      }
     }
   }
 

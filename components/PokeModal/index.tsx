@@ -103,7 +103,7 @@ export default function PokeCard({
                       />
                     ))}
                     <p className={styles.attackName}>
-                      {attack.name} {attack.damage}
+                      {attack.name} <span>{attack.damage}</span>
                     </p>
                     {attack.text && (
                       <p className={styles.attackText}>{attack.text}</p>

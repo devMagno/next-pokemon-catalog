@@ -77,20 +77,18 @@
 
           .attackName {
             margin: 0 0 0 8px;
+
+            span {
+              font-weight: 600;
+            }
           }
 
           + li {
             margin-top: 8px;
           }
 
-          span {
-            + span {
-              margin-left: 4px !important;
-            }
-
-            &:last-child {
-              margin-right: 8px !important;
-            }
+          span + span {
+            margin-left: 4px !important;
           }
         }
       }
