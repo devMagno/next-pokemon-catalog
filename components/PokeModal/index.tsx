@@ -1,12 +1,12 @@
 import { motion } from 'framer-motion'
 import { CardData } from '../../types/card'
-import ImageWithSkeleton from '../ImageWithSkeleton'
 import TypeIcon from '../TypeIcon'
 
 import styles from './PokeModal.module.scss'
 
-interface PokeCardProps {
+interface PokeModalProps {
   data: CardData
+  type: string
   handleCloseModal: () => void
 }
 
@@ -25,11 +25,21 @@ const dropIn = {
   },
 }
 
-export default function PokeCard({ data, handleCloseModal }: PokeCardProps) {
-  // eslint-disable-next-line no-unused-vars
-  const { name, attacks, subtypes, weaknesses, images } = data
-
-  console.log(data)
+export default function PokeCard({
+  data,
+  type,
+  handleCloseModal,
+}: PokeModalProps) {
+  const {
+    name,
+    hp,
+    flavorText,
+    abilities,
+    attacks,
+    subtypes,
+    weaknesses,
+    resistances,
+  } = data
 
   return (
     <motion.div
@@ -49,66 +59,99 @@ export default function PokeCard({ data, handleCloseModal }: PokeCardProps) {
         animate="visible"
         exit="exit"
       >
-        <div className={styles.wrapper}>
-          <ImageWithSkeleton
-            alt={name}
-            title={name}
-            height={768}
-            width={551}
-            src={images.large}
-            className={styles.image}
-          />
+        <div className={styles.content}>
+          <h3 className={styles.name}>
+            {name} <TypeIcon type={type} />
+          </h3>
 
-          <div className={styles.content}>
-            <p className={styles.name}>{name}</p>
-            {attacks && attacks.length && (
-              <div className={styles.attacks}>
-                <span className={styles.title}>Attacks:</span>
-                <ul>
-                  {attacks.map((attack) => (
-                    <li key={attack.name}>
-                      {attack.cost.map((costType, index) => (
-                        <TypeIcon
-                          type={costType.toLowerCase()}
-                          key={`${costType}-${index}`}
-                        />
-                      ))}
-                      <p>
-                        {attack.name} {attack.damage}
-                      </p>
-                      <p>{attack.text}</p>
-                    </li>
-                  ))}
-                </ul>
-              </div>
-            )}
+          {hp && <h4 className={styles.hp}>{hp} HP</h4>}
 
-            {weaknesses && weaknesses.length && (
-              <div className={styles.weaknesses}>
-                <span className={styles.title}>Weaknesses:</span>
-                <ul>
-                  {weaknesses.map((weakness) => (
-                    <li key={weakness.type}>
-                      {weakness.type} {weakness.value}
-                    </li>
-                  ))}
-                </ul>
-              </div>
-            )}
+          {flavorText && <p>{flavorText}</p>}
 
-            {subtypes && subtypes.length && (
-              <div className={styles.subtypes}>
-                <span className={styles.title}>
-                  {subtypes.length > 1 ? 'Subtypes:' : 'Subtype:'}
-                </span>
-                <ul className={styles.subtypes}>
-                  {subtypes.map((subtype) => (
-                    <li key={subtype}>{subtype}</li>
-                  ))}
-                </ul>
-              </div>
-            )}
-          </div>
+          {abilities && abilities.length && (
+            <div className={styles.abilities}>
+              <span className={styles.title}>Abilities:</span>
+              <ul>
+                {abilities.map((ability) => (
+                  <li key={ability.name}>
+                    <p className={styles.attackName}>
+                      <span className={styles.abilityType}>
+                        ({ability.type})
+                      </span>
+
+                      {ability.name}
+                    </p>
+                    {ability.text && (
+                      <p className={styles.attackText}>{ability.text}</p>
+                    )}
+                  </li>
+                ))}
+              </ul>
+            </div>
+          )}
+
+          {attacks && attacks.length && (
+            <div className={styles.attacks}>
+              <span className={styles.title}>Attacks:</span>
+              <ul>
+                {attacks.map((attack) => (
+                  <li key={attack.name}>
+                    {attack.cost.map((costType, index) => (
+                      <TypeIcon
+                        type={costType.toLowerCase()}
+                        key={`${costType}-${index}`}
+                      />
+                    ))}
+                    <p className={styles.attackName}>
+                      {attack.name} {attack.damage}
+                    </p>
+                    {attack.text && (
+                      <p className={styles.attackText}>{attack.text}</p>
+                    )}
+                  </li>
+                ))}
+              </ul>
+            </div>
+          )}
+
+          {weaknesses && weaknesses.length && (
+            <div className={styles.weaknesses}>
+              <span className={styles.title}>Weaknesses:</span>
+              <ul>
+                {weaknesses.map((weakness) => (
+                  <li key={weakness.type}>
+                    <TypeIcon type={weakness.type} /> {weakness.value}
+                  </li>
+                ))}
+              </ul>
+            </div>
+          )}
+
+          {resistances && resistances.length && (
+            <div className={styles.weaknesses}>
+              <span className={styles.title}>Resistances:</span>
+              <ul>
+                {resistances.map((resistance) => (
+                  <li key={resistance.type}>
+                    <TypeIcon type={resistance.type} /> {resistance.value}
+                  </li>
+                ))}
+              </ul>
+            </div>
+          )}
+
+          {subtypes && subtypes.length && (
+            <div className={styles.subtypes}>
+              <span className={styles.title}>
+                {subtypes.length > 1 ? 'Subtypes:' : 'Subtype:'}
+              </span>
+              <ul className={styles.subtypes}>
+                {subtypes.map((subtype) => (
+                  <li key={subtype}>{subtype}</li>
+                ))}
+              </ul>
+            </div>
+          )}
         </div>
       </motion.div>
     </motion.div>

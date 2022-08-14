@@ -16,17 +16,28 @@ interface Weakness {
   value: string
 }
 
+interface Resistance {
+  type: string
+  value: string
+}
+
+interface Ability {
+  name: string
+  text: string
+  type: string
+}
+
 export interface CardData {
   id: string
   name: string
-  supertype: string
   subtypes: string[]
   types: string[]
-  evolvesTo: string[]
   attacks: Attack[]
   weaknesses: Weakness[]
-  retreatCost: string[]
+  resistances: Resistance[]
   number: string
   images: Images
+  hp: string
+  abilities: Ability[]
   flavorText: string
 }

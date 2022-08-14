@@ -95,6 +95,7 @@ export default function Type({ type, data, count }: TypeProps) {
             {modalData && (
               <PokeModal
                 data={modalData as CardData}
+                type={type}
                 handleCloseModal={() => handleCloseModal()}
               />
             )}

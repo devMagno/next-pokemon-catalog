@@ -5,5 +5,13 @@ interface TypeIconProps {
 }
 
 export default function TypeIcon({ type }: TypeIconProps) {
-  return <Image src={`/types/${type}.webp`} width={20} height={20} />
+  return (
+    <Image
+      src={`/types/${type}.webp`}
+      width={20}
+      height={20}
+      alt={`${type} icon image`}
+      title={`${type} icon image`}
+    />
+  )
 }

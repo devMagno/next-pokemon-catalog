@@ -19,7 +19,6 @@
 
     .image {
       width: 245px !important;
-      height: 342px !important;
       min-width: unset !important;
     }
 
@@ -88,6 +87,14 @@
 
         li {
           color: $fontColor;
+
+          display: flex;
+          align-items: center;
+
+          > span {
+            display: block;
+            margin-right: 4px !important;
+          }
         }
       }
     }

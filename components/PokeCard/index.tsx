@@ -59,7 +59,7 @@ export default function PokeCard({
               <ul>
                 {weaknesses.map((weakness) => (
                   <li key={weakness.type}>
-                    {weakness.type} {weakness.value}
+                    <TypeIcon type={weakness.type} /> {weakness.value}
                   </li>
                 ))}
               </ul>

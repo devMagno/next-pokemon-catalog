@@ -1,6 +1,15 @@
 .wrapper {
+  height: 100%;
   overflow: hidden;
   position: relative;
+
+  display: flex;
+  align-items: center;
+  justify-content: center;
+
+  > span {
+    height: 100%;
+  }
 }
 
 .skeleton {
