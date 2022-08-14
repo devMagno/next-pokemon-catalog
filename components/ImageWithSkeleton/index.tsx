@@ -1,5 +1,5 @@
-import Image, { ImageProps } from 'next/image'
 import { useState } from 'react'
+import Image, { ImageProps } from 'next/image'
 
 import styles from './ImageWithSkeleton.module.scss'
 

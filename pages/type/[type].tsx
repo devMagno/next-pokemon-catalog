@@ -1,20 +1,23 @@
-import { Button, Col, Row } from 'antd'
+import { useEffect, useRef, useState } from 'react'
 import { GetStaticPaths, GetStaticProps } from 'next'
-import Link from 'next/link'
-import { LoadingOutlined } from '@ant-design/icons'
 import { useRouter } from 'next/router'
+import axios from 'axios'
+import { Button, Col, Row } from 'antd'
+import Link from 'next/link'
 import { ParsedUrlQuery } from 'querystring'
 import { TbArrowLeft } from 'react-icons/tb'
-import { useEffect, useState } from 'react'
 import { AnimatePresence } from 'framer-motion'
+
 import PokeCard from '../../components/PokeCard'
 import PokeModal from '../../components/PokeModal'
 import Title from '../../components/Title'
 import api from '../../services/api'
+import SEO from '../../components/SEO'
+import Loader from '../../components/Loader'
+
 import { CardData } from '../../types/card'
 
 import styles from './type.module.scss'
-import SEO from '../../components/SEO'
 
 interface IParams extends ParsedUrlQuery {
   type: string
@@ -24,25 +27,59 @@ interface TypeProps {
   type: string
   data: CardData[]
   count: number
+  totalCount: number
 }
 
-export default function Type({ type, data, count }: TypeProps) {
+export default function Type({ type, data, count, totalCount }: TypeProps) {
   const { isFallback } = useRouter()
 
-  if (isFallback)
-    return (
-      <div className="main">
-        <LoadingOutlined style={{ fontSize: '32px' }} />
-      </div>
-    )
+  if (isFallback) return <Loader />
 
   const typeDisplay = type[0].toUpperCase() + type.slice(1)
 
   const [modalData, setModalData] = useState<CardData | null>(null)
+  const [cardsCount, setCardsCount] = useState(count)
+  const [cards, setCards] = useState(data)
+  const [page, setPage] = useState(2)
+  const [isLoading, setIsLoading] = useState(false)
+  const element = useRef<HTMLDivElement>(null)
 
   const handleCloseModal = () => {
     setModalData(null)
   }
+
+  useEffect(() => {
+    const loadMoreCards = async () => {
+      setIsLoading((prev) => !prev)
+
+      const response = await axios.get('/api/cards', {
+        params: {
+          type,
+          page,
+          pageSize: 40,
+        },
+      })
+
+      setCardsCount((prev) => prev + response.data.count)
+      setPage((prev) => prev + 1)
+      setCards((prev) => [...prev, ...response.data.data])
+
+      setIsLoading((prev) => !prev)
+    }
+
+    const intersectionObserver = new IntersectionObserver((entries) => {
+      if (entries.some((entry) => entry.isIntersecting)) loadMoreCards()
+    })
+
+    intersectionObserver.observe(element.current as Element)
+
+    return () => intersectionObserver.disconnect()
+  }, [page, cardsCount, cards])
+
+  useEffect(() => {
+    if (isLoading) document.body.style.overflow = 'hidden'
+    else document.body.style.overflow = 'auto'
+  }, [isLoading])
 
   useEffect(() => {
     const close = (e: KeyboardEvent) => {
@@ -61,6 +98,8 @@ export default function Type({ type, data, count }: TypeProps) {
 
   return (
     <main className="main">
+      {isLoading && <Loader />}
+
       <SEO
         title={`Pokémon TCG - ${typeDisplay} type`}
         ogImage="og.png"
@@ -70,13 +109,13 @@ export default function Type({ type, data, count }: TypeProps) {
       <Title
         type={type}
         title={`${typeDisplay} type`}
-        subtitle={`${count} results found`}
+        subtitle={`Showing ${cardsCount} of ${totalCount} cards`}
       />
 
-      {data.length ? (
+      {cards.length ? (
         <>
           <Row className={styles.cards} gutter={[16, 16]}>
-            {data.map((card) => (
+            {cards.map((card) => (
               <Col span={24} key={card.id}>
                 <PokeCard
                   data={card}
@@ -100,6 +139,8 @@ export default function Type({ type, data, count }: TypeProps) {
               />
             )}
           </AnimatePresence>
+
+          <div ref={element} />
         </>
       ) : (
         <Link href="/" passHref>

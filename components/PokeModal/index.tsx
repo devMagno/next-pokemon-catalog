@@ -1,6 +1,7 @@
 import { motion } from 'framer-motion'
-import { CardData } from '../../types/card'
 import TypeIcon from '../TypeIcon'
+
+import { CardData } from '../../types/card'
 
 import styles from './PokeModal.module.scss'
 
@@ -103,7 +104,8 @@ export default function PokeCard({
                       />
                     ))}
                     <p className={styles.attackName}>
-                      {attack.name} <span>{attack.damage}</span>
+                      {attack.name}
+                      {attack.damage && <span>{attack.damage}</span>}
                     </p>
                     {attack.text && (
                       <p className={styles.attackText}>{attack.text}</p>

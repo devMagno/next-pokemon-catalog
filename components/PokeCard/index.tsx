@@ -1,9 +1,10 @@
 import { Button } from 'antd'
 import Card from 'antd/lib/card'
 
-import { CardData } from '../../types/card'
 import ImageWithSkeleton from '../ImageWithSkeleton'
 import TypeIcon from '../TypeIcon'
+
+import { CardData } from '../../types/card'
 
 import styles from './PokeCard.module.scss'
 
@@ -49,7 +50,7 @@ export default function PokeCard({
                     <p>
                       {attack.name}
 
-                      <span>{attack.damage}</span>
+                      {attack.name && <span>{attack.damage}</span>}
                     </p>
                   </li>
                 ))}
