@@ -12,7 +12,7 @@ import PokeCard from '../../components/PokeCard'
 import PokeModal from '../../components/PokeModal'
 import Title from '../../components/Title'
 import api from '../../services/api'
-import SEO from '../../components/SEO'
+// import SEO from '../../components/SEO'
 import Loader from '../../components/Loader'
 
 import { CardData } from '../../types/card'
@@ -100,11 +100,11 @@ export default function Type({ type, data, count, totalCount }: TypeProps) {
     <main className="main">
       {isLoading && <Loader />}
 
-      <SEO
+      {/* <SEO
         title={`Pokémon TCG - ${typeDisplay} type`}
         ogImage="og.png"
         description={`The Pokémon Trading Card Game abbreviated as PTCG or Pokémon TCG, is a collectible card game based on the Pokémon franchise. Check all the collectible cards of the ${typeDisplay} type!`}
-      />
+      /> */}
 
       <Title
         type={type}
