@@ -3,7 +3,7 @@ import { GetStaticProps } from 'next'
 import Link from 'next/link'
 
 import { TbPokeball } from 'react-icons/tb/'
-// import SEO from '../components/SEO'
+import SEO from '../components/SEO'
 import Title from '../components/Title'
 
 import api from '../services/api'
@@ -17,11 +17,11 @@ interface HomeProps {
 export default function Home({ types }: HomeProps): JSX.Element {
   return (
     <main className={`main ${styles.home}`}>
-      {/* <SEO
+      <SEO
         title="Pokémon TCG - Home"
         ogImage="og.png"
         description="The Pokémon Trading Card Game abbreviated as PTCG or Pokémon TCG, is a collectible card game based on the Pokémon franchise. Choose your type and see all the collectible cards!"
-      /> */}
+      />
 
       <Title
         title="Pokémon TCG"
