@@ -1,8 +1,7 @@
-import { useEffect, useRef, useState } from 'react'
+import { useEffect, useState } from 'react'
 import { GetStaticPaths, GetStaticProps } from 'next'
 import { useRouter } from 'next/router'
-import axios from 'axios'
-import { Button, Col, Row } from 'antd'
+import { Button, Col, Pagination, Row } from 'antd'
 import Link from 'next/link'
 import { ParsedUrlQuery } from 'querystring'
 import { TbArrowLeft } from 'react-icons/tb'
@@ -26,60 +25,23 @@ interface IParams extends ParsedUrlQuery {
 interface TypeProps {
   type: string
   data: CardData[]
-  count: number
   totalCount: number
+  page: number
 }
 
-export default function Type({ type, data, count, totalCount }: TypeProps) {
-  const { isFallback } = useRouter()
+export default function TypePage({ type, data, totalCount, page }: TypeProps) {
+  const { isFallback, push } = useRouter()
 
   if (isFallback) return <Loader />
 
   const typeDisplay = type[0].toUpperCase() + type.slice(1)
 
-  const [modalData, setModalData] = useState<CardData | null>(null)
-  const [cardsCount, setCardsCount] = useState(count)
-  const [cards, setCards] = useState(data)
-  const [page, setPage] = useState(2)
   const [isLoading, setIsLoading] = useState(false)
-  const element = useRef<HTMLDivElement>(null)
+  const [modalData, setModalData] = useState<CardData | null>(null)
 
   const handleCloseModal = () => {
     setModalData(null)
   }
-
-  useEffect(() => {
-    const loadMoreCards = async () => {
-      setIsLoading((prev) => !prev)
-
-      const response = await axios.get('/api/cards', {
-        params: {
-          type,
-          page,
-          pageSize: 40,
-        },
-      })
-
-      setCardsCount((prev) => prev + response.data.count)
-      setPage((prev) => prev + 1)
-      setCards((prev) => [...prev, ...response.data.data])
-
-      setIsLoading((prev) => !prev)
-    }
-
-    const intersectionObserver = new IntersectionObserver((entries) => {
-      if (entries.some((entry) => entry.isIntersecting)) loadMoreCards()
-    })
-
-    intersectionObserver.observe(element.current as Element)
-
-    return () => intersectionObserver.disconnect()
-  }, [page, cardsCount, cards])
-
-  useEffect(() => {
-    if (isLoading) document.body.style.overflow = 'hidden'
-    else document.body.style.overflow = 'auto'
-  }, [isLoading])
 
   useEffect(() => {
     const close = (e: KeyboardEvent) => {
@@ -96,6 +58,11 @@ export default function Type({ type, data, count, totalCount }: TypeProps) {
     }
   }, [modalData])
 
+  useEffect(() => {
+    if (isLoading) document.body.style.overflow = 'hidden'
+    else document.body.style.overflow = 'auto'
+  }, [isLoading])
+
   return (
     <main className="main">
       {isLoading && <Loader />}
@@ -109,13 +76,13 @@ export default function Type({ type, data, count, totalCount }: TypeProps) {
       <Title
         type={type}
         title={`${typeDisplay} type`}
-        subtitle={`Showing ${cardsCount} of ${totalCount} cards`}
+        subtitle={`${totalCount} cards`}
       />
 
-      {cards.length ? (
+      {data.length ? (
         <>
           <Row className={styles.cards} gutter={[16, 16]}>
-            {cards.map((card) => (
+            {data.map((card) => (
               <Col span={24} key={card.id}>
                 <PokeCard
                   data={card}
@@ -125,6 +92,23 @@ export default function Type({ type, data, count, totalCount }: TypeProps) {
               </Col>
             ))}
           </Row>
+
+          <Pagination
+            responsive
+            pageSize={40}
+            total={totalCount}
+            showSizeChanger={false}
+            defaultCurrent={page}
+            className={`${type} ${styles.pagination}`}
+            showTotal={(total, range) =>
+              `${range[0]}-${range[1]} of ${total} cards`
+            }
+            onChange={async (pageNumber) => {
+              setIsLoading(true)
+              await push(`/${type}/${pageNumber}`)
+              setIsLoading(false)
+            }}
+          />
 
           <AnimatePresence
             initial={false}
@@ -139,8 +123,6 @@ export default function Type({ type, data, count, totalCount }: TypeProps) {
               />
             )}
           </AnimatePresence>
-
-          <div ref={element} />
         </>
       ) : (
         <Link href="/" passHref>
@@ -157,22 +139,31 @@ export default function Type({ type, data, count, totalCount }: TypeProps) {
 export const getStaticPaths: GetStaticPaths = async () => {
   const response = await api.get('types')
 
-  const paths = response.data.data.map((type: string) => ({
-    params: { type: type.toLowerCase() },
-  }))
+  const paths = Array.from({ length: 5 })
+    .map((_, i) =>
+      response.data.data
+        .map((type: string) => `/${type.toLowerCase()}/${i + 1}`)
+        .join(),
+    )
+    .join()
+    .split(',')
 
   return {
     paths,
-    fallback: true,
+    fallback: 'blocking',
   }
 }
 
 export const getStaticProps: GetStaticProps = async (context) => {
-  const { type } = context.params as IParams
+  const params = context.params as IParams
+  const { type } = params
+  const page = Number(params?.page) || 1
 
-  const response = await api.get(`cards?q=types:${type}&pageSize=40`)
+  const response = await api.get(
+    `cards?q=types:${type}&page=${page}&pageSize=40`,
+  )
 
-  const props = { type, ...response.data }
+  const props = { type, ...response.data, currentPage: page }
 
   return {
     props,

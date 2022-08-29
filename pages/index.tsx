@@ -31,7 +31,7 @@ export default function Home({ types }: HomeProps): JSX.Element {
 
       <nav className={styles.typesContainer}>
         {types.map((type) => (
-          <Link href={`/type/${type.toLowerCase()}`} passHref key={type}>
+          <Link href={`/${type.toLowerCase()}/1`} passHref key={type}>
             <Button
               key={type}
               size="large"

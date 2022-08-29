@@ -43,46 +43,310 @@ li {
 
 .colorless {
   color: $normal;
+
+  &.typeButton {
+    background-color: $normal;
+
+    &:hover,
+    &:focus {
+      border-color: $normal;
+      box-shadow: 0 0 0 3px rgba($normal, 0.3);
+    }
+  }
+
+  .ant-pagination-item:hover,
+  .ant-pagination-item-link:not([disabled]):hover,
+  .ant-pagination-item-active {
+    border-color: $normal;
+
+    a {
+      color: $normal;
+    }
+
+    svg {
+      fill: $normal;
+    }
+  }
 }
 
 .darkness {
   color: $dark;
+
+  &.typeButton {
+    background-color: $dark;
+
+    &:hover,
+    &:focus {
+      border-color: $dark;
+      box-shadow: 0 0 0 3px rgba($dark, 0.3);
+    }
+  }
+
+  .ant-pagination-item:hover,
+  .ant-pagination-item-link:not([disabled]):hover,
+  .ant-pagination-item-active {
+    border-color: $dark;
+
+    a {
+      color: $dark;
+    }
+
+    svg {
+      fill: $dark;
+    }
+  }
 }
 
 .dragon {
   color: $dragon;
+
+  &.typeButton {
+    background-color: $dragon;
+
+    &:hover,
+    &:focus {
+      border-color: $dragon;
+      box-shadow: 0 0 0 3px rgba($dragon, 0.3);
+    }
+  }
+
+  .ant-pagination-item:hover,
+  .ant-pagination-item-link:not([disabled]):hover,
+  .ant-pagination-item-active {
+    border-color: $dragon;
+
+    a {
+      color: $dragon;
+    }
+
+    svg {
+      fill: $dragon;
+    }
+  }
 }
 
 .fairy {
   color: $fairy;
+
+  &.typeButton {
+    background-color: $fairy;
+
+    &:hover,
+    &:focus {
+      border-color: $fairy;
+      box-shadow: 0 0 0 3px rgba($fairy, 0.3);
+    }
+  }
+
+  .ant-pagination-item:hover,
+  .ant-pagination-item-link:not([disabled]):hover,
+  .ant-pagination-item-active {
+    border-color: $fairy;
+
+    a {
+      color: $fairy;
+    }
+
+    svg {
+      fill: $fairy;
+    }
+  }
 }
 
 .fighting {
   color: $fighting;
+
+  &.typeButton {
+    background-color: $fighting;
+
+    &:hover,
+    &:focus {
+      border-color: $fighting;
+      box-shadow: 0 0 0 3px rgba($fighting, 0.3);
+    }
+  }
+
+  .ant-pagination-item:hover,
+  .ant-pagination-item-link:not([disabled]):hover,
+  .ant-pagination-item-active {
+    border-color: $fighting;
+
+    a {
+      color: $fighting;
+    }
+
+    svg {
+      fill: $fighting;
+    }
+  }
 }
 
 .fire {
   color: $fire;
+
+  &.typeButton {
+    background-color: $fire;
+
+    &:hover,
+    &:focus {
+      border-color: $fire;
+      box-shadow: 0 0 0 3px rgba($fire, 0.3);
+    }
+  }
+
+  .ant-pagination-item:hover,
+  .ant-pagination-item-link:not([disabled]):hover,
+  .ant-pagination-item-active {
+    border-color: $fire;
+
+    a {
+      color: $fire;
+    }
+
+    svg {
+      fill: $fire;
+    }
+  }
 }
 
 .grass {
   color: $grass;
+
+  &.typeButton {
+    background-color: $grass;
+
+    &:hover,
+    &:focus {
+      border-color: $grass;
+      box-shadow: 0 0 0 3px rgba($grass, 0.3);
+    }
+  }
+
+  .ant-pagination-item:hover,
+  .ant-pagination-item-link:not([disabled]):hover,
+  .ant-pagination-item-active {
+    border-color: $grass;
+
+    a {
+      color: $grass;
+    }
+
+    svg {
+      fill: $grass;
+    }
+  }
 }
 
 .lightning {
   color: $electric;
+
+  &.typeButton {
+    background-color: $electric;
+
+    &:hover,
+    &:focus {
+      border-color: $electric;
+      box-shadow: 0 0 0 3px rgba($electric, 0.3);
+    }
+  }
+
+  .ant-pagination-item:hover,
+  .ant-pagination-item-link:not([disabled]):hover,
+  .ant-pagination-item-active {
+    border-color: $electric;
+
+    a {
+      color: $electric;
+    }
+
+    svg {
+      fill: $electric;
+    }
+  }
 }
 
 .metal {
   color: $steel;
+
+  &.typeButton {
+    background-color: $steel;
+
+    &:hover,
+    &:focus {
+      border-color: $steel;
+      box-shadow: 0 0 0 3px rgba($steel, 0.3);
+    }
+  }
+
+  .ant-pagination-item:hover,
+  .ant-pagination-item-link:not([disabled]):hover,
+  .ant-pagination-item-active {
+    border-color: $steel;
+
+    a {
+      color: $steel;
+    }
+
+    svg {
+      fill: $steel;
+    }
+  }
 }
 
 .psychic {
   color: $psychic;
+
+  &.typeButton {
+    background-color: $psychic;
+
+    &:hover,
+    &:focus {
+      border-color: $psychic;
+      box-shadow: 0 0 0 3px rgba($psychic, 0.3);
+    }
+  }
+
+  .ant-pagination-item:hover,
+  .ant-pagination-item-link:not([disabled]):hover,
+  .ant-pagination-item-active {
+    border-color: $psychic;
+
+    a {
+      color: $psychic;
+    }
+
+    svg {
+      fill: $psychic;
+    }
+  }
 }
 
 .water {
   color: $water;
+
+  &.typeButton {
+    background-color: $water;
+
+    &:hover,
+    &:focus {
+      border-color: $water;
+      box-shadow: 0 0 0 3px rgba($water, 0.3);
+    }
+  }
+
+  .ant-pagination-item:hover,
+  .ant-pagination-item-link:not([disabled]):hover,
+  .ant-pagination-item-active {
+    border-color: $water;
+
+    a {
+      color: $water;
+    }
+
+    svg {
+      fill: $water;
+    }
+  }
 }
 
 .typeButton {
@@ -93,115 +357,5 @@ li {
   &:focus {
     color: $white;
     border-color: $fontColor;
-  }
-
-  &.colorless {
-    background-color: $normal;
-
-    &:hover,
-    &:focus {
-      border-color: $normal;
-      box-shadow: 0 0 0 3px rgba($normal, 0.3);
-    }
-  }
-
-  &.darkness {
-    background-color: $dark;
-
-    &:hover,
-    &:focus {
-      border-color: $dark;
-      box-shadow: 0 0 0 3px rgba($dark, 0.3);
-    }
-  }
-
-  &.dragon {
-    background-color: $dragon;
-
-    &:hover,
-    &:focus {
-      border-color: $dragon;
-      box-shadow: 0 0 0 3px rgba($dragon, 0.3);
-    }
-  }
-
-  &.fairy {
-    background-color: $fairy;
-
-    &:hover,
-    &:focus {
-      border-color: $fairy;
-      box-shadow: 0 0 0 3px rgba($fairy, 0.3);
-    }
-  }
-
-  &.fighting {
-    background-color: $fighting;
-
-    &:hover,
-    &:focus {
-      border-color: $fighting;
-      box-shadow: 0 0 0 3px rgba($fighting, 0.3);
-    }
-  }
-
-  &.fire {
-    background-color: $fire;
-
-    &:hover,
-    &:focus {
-      border-color: $fire;
-      box-shadow: 0 0 0 3px rgba($fire, 0.3);
-    }
-  }
-
-  &.grass {
-    background-color: $grass;
-
-    &:hover,
-    &:focus {
-      border-color: $grass;
-      box-shadow: 0 0 0 3px rgba($grass, 0.3);
-    }
-  }
-
-  &.lightning {
-    background-color: $electric;
-
-    &:hover,
-    &:focus {
-      border-color: $electric;
-      box-shadow: 0 0 0 3px rgba($electric, 0.3);
-    }
-  }
-
-  &.metal {
-    background-color: $steel;
-
-    &:hover,
-    &:focus {
-      border-color: $steel;
-      box-shadow: 0 0 0 3px rgba($steel, 0.3);
-    }
-  }
-
-  &.psychic {
-    background-color: $psychic;
-
-    &:hover,
-    &:focus {
-      border-color: $psychic;
-      box-shadow: 0 0 0 3px rgba($psychic, 0.3);
-    }
-  }
-
-  &.water {
-    background-color: $water;
-
-    &:hover,
-    &:focus {
-      border-color: $water;
-      box-shadow: 0 0 0 3px rgba($water, 0.3);
-    }
   }
 }
