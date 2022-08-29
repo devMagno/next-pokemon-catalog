@@ -7,7 +7,7 @@ interface TypeIconProps {
 export default function TypeIcon({ type }: TypeIconProps) {
   return (
     <Image
-      src={`/types/${type}.webp`}
+      src={`/types/${type.toLowerCase()}.webp`}
       width={20}
       height={20}
       alt={`${type} icon image`}
