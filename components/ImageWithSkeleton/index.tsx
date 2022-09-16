@@ -1,5 +1,6 @@
 import { useState } from 'react'
 import Image, { ImageProps } from 'next/image'
+import { Skeleton } from 'antd'
 
 import styles from './ImageWithSkeleton.module.scss'
 
@@ -8,7 +9,10 @@ export default function ImageWithSkeleton(props: ImageProps) {
 
   return (
     <div className={styles.wrapper}>
-      {isSkeletonActive && <div className={styles.skeleton} />}
+      {isSkeletonActive && (
+        <Skeleton.Image active={isSkeletonActive} className={styles.skeleton} />
+      )}
+
       <Image
         onLoad={() => {
           setIsSkeletonActive(false)

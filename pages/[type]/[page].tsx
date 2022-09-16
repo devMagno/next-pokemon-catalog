@@ -1,7 +1,7 @@
 import { useEffect, useState } from 'react'
 import { GetStaticPaths, GetStaticProps } from 'next'
 import { useRouter } from 'next/router'
-import { Button, Col, Pagination, Row } from 'antd'
+import { Button, Col, Pagination, Row, Spin } from 'antd'
 import Link from 'next/link'
 import { ParsedUrlQuery } from 'querystring'
 import { TbArrowLeft } from 'react-icons/tb'
@@ -12,7 +12,6 @@ import PokeModal from '../../components/PokeModal'
 import Title from '../../components/Title'
 import api from '../../services/api'
 import SEO from '../../components/SEO'
-import Loader from '../../components/Loader'
 
 import { CardData } from '../../types/card'
 
@@ -32,16 +31,10 @@ interface TypeProps {
 export default function TypePage({ type, data, totalCount, page }: TypeProps) {
   const { isFallback, push } = useRouter()
 
-  if (isFallback) return <Loader />
-
   const typeDisplay = type[0].toUpperCase() + type.slice(1)
 
   const [isLoading, setIsLoading] = useState(false)
   const [modalData, setModalData] = useState<CardData | null>(null)
-
-  const handleCloseModal = () => {
-    setModalData(null)
-  }
 
   useEffect(() => {
     const close = (e: KeyboardEvent) => {
@@ -63,9 +56,26 @@ export default function TypePage({ type, data, totalCount, page }: TypeProps) {
     else document.body.style.overflow = 'auto'
   }, [isLoading])
 
+  if (isFallback)
+    return (
+      <main className="main">
+        <SEO
+          title={`Pokémon TCG - ${typeDisplay} type`}
+          ogImage="og.png"
+          description={`The Pokémon Trading Card Game abbreviated as PTCG or Pokémon TCG, is a collectible card game based on the Pokémon franchise. Check all the collectible cards of the ${typeDisplay} type!`}
+        />
+
+        <Spin size="large" className={type} />
+      </main>
+    )
+
+  const handleCloseModal = () => {
+    setModalData(null)
+  }
+
   return (
     <main className="main">
-      {isLoading && <Loader />}
+      {isLoading && <Spin size="large" className={type} />}
 
       <SEO
         title={`Pokémon TCG - ${typeDisplay} type`}
@@ -83,7 +93,7 @@ export default function TypePage({ type, data, totalCount, page }: TypeProps) {
         <>
           <Row className={styles.cards} gutter={[16, 16]}>
             {data.map((card) => (
-              <Col span={24} key={card.id}>
+              <Col xs={24} sm={24} md={12} lg={12} xl={12} key={card.id}>
                 <PokeCard
                   data={card}
                   type={type}
