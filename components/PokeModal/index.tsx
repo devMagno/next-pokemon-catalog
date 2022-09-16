@@ -1,4 +1,5 @@
 import { motion } from 'framer-motion'
+import { TbX } from 'react-icons/tb'
 import TypeIcon from '../TypeIcon'
 
 import { CardData } from '../../types/card'
@@ -44,9 +45,7 @@ export default function PokeCard({
 
   return (
     <motion.div
-      onClick={() => {
-        handleCloseModal()
-      }}
+      onClick={handleCloseModal}
       className={styles.backdrop}
       initial={{ opacity: 0 }}
       animate={{ opacity: 1 }}
@@ -61,6 +60,16 @@ export default function PokeCard({
         exit="exit"
       >
         <div className={styles.content}>
+          <button
+            className={styles.close}
+            type="button"
+            title="Close"
+            onClick={handleCloseModal}
+          >
+            <span className="sr-only">Close</span>
+            <TbX />
+          </button>
+
           <h3 className={styles.name}>
             {name} <TypeIcon type={type} />
           </h3>
