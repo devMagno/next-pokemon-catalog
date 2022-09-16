@@ -31,9 +31,6 @@ interface TypeProps {
 export default function TypePage({ type, data, totalCount, page }: TypeProps) {
   const { isFallback, push } = useRouter()
 
-  const typeDisplay = type[0].toUpperCase() + type.slice(1)
-
-  const [isLoading, setIsLoading] = useState(false)
   const [modalData, setModalData] = useState<CardData | null>(null)
 
   useEffect(() => {
@@ -51,18 +48,13 @@ export default function TypePage({ type, data, totalCount, page }: TypeProps) {
     }
   }, [modalData])
 
-  useEffect(() => {
-    if (isLoading) document.body.style.overflow = 'hidden'
-    else document.body.style.overflow = 'auto'
-  }, [isLoading])
-
   if (isFallback)
     return (
       <main className="main">
         <SEO
-          title={`Pokémon TCG - ${typeDisplay} type`}
+          title="Pokémon TCG"
           ogImage="og.png"
-          description={`The Pokémon Trading Card Game abbreviated as PTCG or Pokémon TCG, is a collectible card game based on the Pokémon franchise. Check all the collectible cards of the ${typeDisplay} type!`}
+          description="The Pokémon Trading Card Game abbreviated as PTCG or Pokémon TCG, is a collectible card game based on the Pokémon franchise"
         />
 
         <Spin size="large" className={type} />
@@ -73,10 +65,10 @@ export default function TypePage({ type, data, totalCount, page }: TypeProps) {
     setModalData(null)
   }
 
+  const typeDisplay = type[0].toUpperCase() + type.slice(1)
+
   return (
     <main className="main">
-      {isLoading && <Spin size="large" className={type} />}
-
       <SEO
         title={`Pokémon TCG - ${typeDisplay} type`}
         ogImage="og.png"
@@ -113,11 +105,7 @@ export default function TypePage({ type, data, totalCount, page }: TypeProps) {
             showTotal={(total, range) =>
               `${range[0]}-${range[1]} of ${total} cards`
             }
-            onChange={async (pageNumber) => {
-              setIsLoading(true)
-              await push(`/${type}/${pageNumber}`)
-              setIsLoading(false)
-            }}
+            onChange={(pageNumber) => push(`/${type}/${pageNumber}`)}
           />
 
           <AnimatePresence
@@ -160,7 +148,7 @@ export const getStaticPaths: GetStaticPaths = async () => {
 
   return {
     paths,
-    fallback: 'blocking',
+    fallback: true,
   }
 }
 
